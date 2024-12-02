@@ -310,11 +310,18 @@ fetchData();
 const countdownElement = document.getElementById('countdown');
 const birthdayButton = document.getElementById('birthdayButton');
 
-// Configurar la fecha objetivo
-const targetDate = new Date(new Date().getFullYear(), 11, 2); // 2 de diciembre del año actual
+// Configurar la fecha objetivo para la zona horaria de México
+const targetDate = new Date(new Date().getFullYear(), 11, 2); // 2 de diciembre
+targetDate.setHours(0, 0, 0, 0); // Establece la medianoche
+
+function getCurrentTimeInMexico() {
+  return new Date(
+    new Intl.DateTimeFormat('en-US', { timeZone: 'America/Mexico_City' }).format(new Date())
+  );
+}
 
 function updateCountdown() {
-  const now = new Date();
+  const now = getCurrentTimeInMexico(); // Obtener hora en México
   const timeDifference = targetDate - now;
 
   if (timeDifference <= 0) {
@@ -331,11 +338,11 @@ function updateCountdown() {
   }
 }
 
-//Actualizar la cuenta regresiva cada segundo
+// Actualizar la cuenta regresiva cada segundo
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-//Redirigir al HTML de cumpleaños si se habilita el botón
+// Redirigir al HTML de cumpleaños si se habilita el botón
 birthdayButton.addEventListener('click', () => {
   if (!birthdayButton.disabled) {
     window.location.href = 'cumple.html';
