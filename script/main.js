@@ -306,21 +306,24 @@ const animationTimeline = () => {
 // Run fetch and animation in sequence
 fetchData();
 
-// Codigo para la cuenta regresiva
+//Codigo para la cuenta regresiva
 const countdownElement = document.getElementById('countdown');
 const birthdayButton = document.getElementById('birthdayButton');
 
-// Configurar la fecha objetivo para la zona horaria de México
-const targetDate = new Date(new Date().getFullYear(), 11, 2); // 2 de diciembre
+// Configurar la fecha objetivo para la medianoche del 2 de diciembre en la zona horaria de México
+const targetDate = new Date(new Date().getFullYear(), 11, 2, 0, 0, 0, 0); // 2 de diciembre a las 00:00
 
 function getCurrentTimeInMexico() {
-  return new Date(
-    new Intl.DateTimeFormat('en-US', { timeZone: 'America/Mexico_City' }).format(new Date())
-  );
+  // Obtener la hora exacta en la zona horaria de México
+  const now = new Date();
+  const mexicoTimeOffset = -6; // Zona horaria de México (CST sin horario de verano)
+  const utcOffset = now.getTimezoneOffset() / 60; // Desfase UTC del cliente
+  const mexicoNow = new Date(now.getTime() + (utcOffset + mexicoTimeOffset) * 60 * 60 * 1000);
+  return mexicoNow;
 }
 
 function updateCountdown() {
-  const now = getCurrentTimeInMexico(); // Obtener hora en México
+  const now = getCurrentTimeInMexico(); // Obtener la hora actual en México
   const timeDifference = targetDate - now;
 
   if (timeDifference <= 0) {
@@ -347,3 +350,4 @@ birthdayButton.addEventListener('click', () => {
     window.location.href = 'cumple.html';
   }
 });
+
