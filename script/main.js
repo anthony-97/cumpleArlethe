@@ -212,7 +212,7 @@ const animationTimeline = () => {
       ".lydia-dp",
       0.5,
       {
-        scale: 1.5,
+        scale: 3.5,
         opacity: 0,
         x: 25,
         y: -25,
@@ -311,7 +311,7 @@ const countdownElement = document.getElementById('countdown');
 const birthdayButton = document.getElementById('birthdayButton');
 
 // Configurar la fecha objetivo
-const targetDate = new Date(new Date().getFullYear(), 11, 1); // 2 de diciembre del año actual
+const targetDate = new Date(new Date().getFullYear(), 11, 2); // 2 de diciembre del año actual
 
 function updateCountdown() {
   const now = new Date();
@@ -327,6 +327,7 @@ function updateCountdown() {
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
     countdownElement.textContent = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+    birthdayButton.disabled = false;
   }
 }
 
