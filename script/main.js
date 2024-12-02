@@ -329,14 +329,15 @@ function updateCountdown() {
   if (timeDifference <= 0) {
     countdownElement.textContent = "¡Ya es tu cumple!";
     birthdayButton.disabled = false;
+    birthdayButton.innerText = "¡Festejar ahora!";
   } else {
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
     countdownElement.textContent = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
     birthdayButton.disabled = false;
+    birthdayButton.innerText = "¡Espera un poco más!"; // Texto del botón mientras espera
   }
 }
 
