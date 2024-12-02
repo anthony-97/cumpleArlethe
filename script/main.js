@@ -312,7 +312,6 @@ const birthdayButton = document.getElementById('birthdayButton');
 
 // Configurar la fecha objetivo para la zona horaria de México
 const targetDate = new Date(new Date().getFullYear(), 11, 2); // 2 de diciembre
-targetDate.setHours(0, 0, 0, 0); // Establece la medianoche
 
 function getCurrentTimeInMexico() {
   return new Date(
